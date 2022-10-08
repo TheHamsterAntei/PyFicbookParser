@@ -21,13 +21,16 @@ def main():
     content = f.read()
     f.close()
     f = open('parsed.txt', 'w')
-    f.write('12500000\n')
+    f.write('12800000\n')
     f.write(content)
-    for i in range(max_id, 12500000):
+    for i in range(max_id, 12800000):
         time.sleep(0.01)
-        print(str(12500000 - i) + " осталось")
+        print(str(12800000 - i) + " осталось")
         response = scraper.get("https://ficbook.net/readfic/" + str(i))
         if response.text.find('404 — Страница не найдена') != -1:
+            continue
+        if response.text.find('ic_thumbs-up-disabled') != -1:
+            print(1)
             continue
         date_list = re.findall(r'20..,', response.text)
         if date_list.count('2022,') == 0:
