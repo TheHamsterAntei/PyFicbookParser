@@ -47,8 +47,6 @@ def main():
         wrt.write(rating)
         if step % 10 == 0:
             print(step)
-        if step == 300:
-            break
         wrt.write('\n')
 
 
